@@ -1,0 +1,39 @@
+spring:
+ profiles:
+    active:
+    - dev
+ jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+ mail:
+    host: smtp.qq.com
+    username: 9905049
+    password: YANGJIAN1209
+    properties:
+     mail:
+      smtp:
+       auth: true 
+       starttls: 
+        enable: true
+       required: true 
+      
+ ##让控制器输出的jackson格式更美观
+ jackson:
+    serialization:
+      indent-output: true  
+      
+# thymeleaf设置 mode: 去掉html的校验。 cache: 关闭thymeleaf的缓存
+thymeleaf:
+   cache: false
+   prefix: classpath:/templates/
+   suffix: .html
+   encoding: UTF-8
+   content-type: text/html
+   mode: HTML5
+#logging 设置
+logging:
+ file: log.log  
+
+  
+  

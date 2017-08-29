@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -21,6 +24,7 @@ public class UserService {
     @Autowired
     private UserDaoCustom userDaoCustom;
     
+    @Cacheable(value="users", key="#user.id")
 	public List<UserEO> findUserByName(String name) {
 
 		return userDao.findByName(name);
@@ -56,9 +60,13 @@ public class UserService {
 
 	}
 	 
-	 
+	 @CachePut(value="users", key="#user.id")
 	 public  void saveUser(UserEO user) {
 		 userDao.save(user);
 	 }
-
+	 
+	 @CacheEvict(value="users")
+	 public void removeUser(Long id) {
+		 userDao.delete(id);
+	 }
 }

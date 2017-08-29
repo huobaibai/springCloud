@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.huobaibai.domain.entry.UserEO;
@@ -73,9 +74,23 @@ public class UserLoginController {
 		System.out.println("3:"+ListUser3.size());
 		
 		return ListUser;
+		
+		
 	}
 	
+	@RequestMapping(value="/remove/{id}",method=RequestMethod.GET)
+	public void removeUser(Long id) {
+		userService.removeUser(id);
+	}
 	
+	@RequestMapping(value="/save")
+	public void saveUser() {
+		
+		UserEO user=new UserEO();
+		user.setName("yangjian");
+		
+		userService.saveUser(user);
+	}
 	
 
 }

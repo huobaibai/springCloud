@@ -17,7 +17,7 @@ import com.huobaibai.domain.entry.UserEO;
 @CacheConfig(cacheNames="users")
 public interface UserDao  extends JpaRepository<UserEO, Long>{
 	
-	@Cacheable
+	
 	@Query("select u from UserEO u where u.name=:uname")
 	public List<UserEO> findByName(@Param("uname")String name);
 	
